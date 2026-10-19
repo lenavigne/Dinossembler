@@ -12,6 +12,10 @@ public class PlayerControl : MonoBehaviour
     private Animator _animator;
     private CharacterController CharacterController;
 
+    public float jumpSpeed = 10;
+    public int nbCapa = 0;
+    bool isRunning = false;
+    float grav = 25f; //gravité
     void Start()
     {
         //gestion du curseur
@@ -35,14 +39,49 @@ public class PlayerControl : MonoBehaviour
             _animator.SetBool("IsRunning", true);
         else
             _animator.SetBool("IsRunning", false);
-        //float speedY = moveDirection.y;
+        float speedY = moveDirection.y;
+
+
+        isRunning = (Input.GetKey(KeyCode.LeftShift) && nbCapa > 1); //à implémenter -> si cogne dans obstacle fragile.
 
         //calcul des vitesses
-        speedX = speedX * speed;
-        speedZ = speedZ * speed;
+        if (isRunning && CharacterController.isGrounded) {
+            speedX = speedX * speed * 2;
+            speedZ = speedZ * speed * 2;
+            gameObject.tag = "runningPlayer";
+        }
+        else
+        {
+            speedX = speedX * speed;
+            speedZ = speedZ * speed;
+            gameObject.tag = "walkingPlayer";
+        }
 
         //calcul du mouvement
         moveDirection = forward * speedZ + right * speedX;
+
+        if(Input.GetButton("Jump") && CharacterController.isGrounded && nbCapa > 0)
+        {
+            moveDirection.y = jumpSpeed;
+        }
+        else
+        {
+            moveDirection.y = speedY;
+        }
+
+        if(Input.GetButton("Jump") && !CharacterController.isGrounded && nbCapa > 2 && moveDirection.y<1f)
+        {
+            grav = 1f;
+        }
+
+        if (!CharacterController.isGrounded)
+        {
+            moveDirection.y -= grav * Time.deltaTime;
+        }
+        if (CharacterController.isGrounded)
+        {
+            grav = 20f;
+        }
 
         //application du mouvement
         CharacterController.Move(moveDirection * Time.deltaTime);
