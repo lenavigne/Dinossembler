@@ -7,30 +7,42 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
     LayerMask layerObject;
     LayerMask layerTarget;
 
-    public GameObject selectedObject;
+    Transform selectedObject;
     Transform selectedLocation;
     [SerializeField]
-    float speed = 1.0f;
+    float pickDistance = 4f;
+    bool carringObject = false;
+
     void Start()
     {
         cam = GetComponentInChildren<Camera>();
-        layerObject = LayerMask.GetMask("Bones");
+        layerObject = LayerMask.GetMask("Bone");
         layerTarget = LayerMask.GetMask("Target");
     }
 
     void Update()
     {
-        if (Input.GetKey(KeyCode.E))
+        if (Input.GetMouseButtonDown(0))
+        {
+            SelectObject();
+        }
+        else if (carringObject && Input.GetMouseButtonUp(0))
         {
             SelectLocationTarget();
         }
-        if (selectedLocation != null)
+    }
+
+    void SelectObject()
+    {
+        RaycastHit hit;
+        // Does the ray intersect object
+        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerObject))
         {
-            selectedObject.GetComponent<Rigidbody>().useGravity = false;
-            MoveToTarget();
-            if (IsPlaced())
-            {
-                SaveBonesPlacement();
+            if(IsPickable(hit.transform))
+            { 
+                selectedObject = hit.transform;
+                selectedObject.GetComponent<PickableBehavior>().Grabbed(cam.transform);
+                carringObject = true;
             }
         }
     }
@@ -42,35 +54,12 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerTarget))
         {
             selectedLocation = hit.transform;
+            selectedObject.GetComponent<PickableBehavior>().Released(selectedLocation);
         }
     }
 
-    void MoveToTarget()
+    bool IsPickable(Transform obj)
     {
-        selectedObject.transform.position = Vector3.MoveTowards(selectedObject.transform.position, selectedLocation.transform.position, speed * Time.deltaTime);
-    }
-
-    void SaveBonesPlacement()
-    {
-        if (IsTheRightBones())
-        {
-            selectedObject.transform.SetParent(selectedLocation.parent, true);
-            Destroy(selectedLocation.gameObject);
-        }
-        else
-        {
-            selectedObject.GetComponent<Rigidbody>().useGravity = true;
-            selectedLocation = null;
-        }
-    }
-
-    bool IsPlaced()
-    {
-        return Vector3.Distance(selectedObject.transform.position, selectedLocation.transform.position) == 0f;
-    }
-
-    bool IsTheRightBones()
-    {
-        return selectedObject.transform.name == selectedLocation.name;
+        return (Vector3.Distance(gameObject.transform.position, obj.position) <= pickDistance);
     }
 }

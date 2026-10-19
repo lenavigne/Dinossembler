@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    public Camera PlayerCamera;
+    //public Camera PlayerCamera;
 
     public Transform PivotCenter;
 
@@ -28,8 +28,8 @@ public class PlayerControl : MonoBehaviour
 
     private void Update()
     {
-        Vector3 forward = transform.TransformDirection(Vector3.forward);
-        Vector3 right = transform.TransformDirection(Vector3.right);
+        Vector3 forward = -transform.TransformDirection(Vector3.forward);
+        Vector3 right = -transform.TransformDirection(Vector3.right);
 
         //recuperation des inputs
         float speedZ = Input.GetAxis("Vertical");
@@ -50,7 +50,7 @@ public class PlayerControl : MonoBehaviour
         rotationX += -Input.GetAxis("Mouse Y") * rotationSpeed;
         rotationX = Mathf.Clamp(rotationX, -rotationXlimit, rotationXlimit);
         //applique rotation haut/bas
-        PivotCenter.transform.localRotation = Quaternion.Euler(rotationX, 0, 0);
+        PivotCenter.transform.localRotation = Quaternion.Euler(rotationX, PivotCenter.transform.localEulerAngles.y, PivotCenter.transform.localEulerAngles.z);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
 
     }
