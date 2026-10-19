@@ -3,19 +3,14 @@ using UnityEngine.EventSystems;
 
 public class PlayerControl : MonoBehaviour
 {
-    //public Camera PlayerCamera;
-
-    public Transform PivotCenter;
-
-    CharacterController CharacterController;
-
-    public float speed = 10;
-
-    Vector3 moveDirection;
-
-    float rotationX = 0;
-    public float rotationSpeed = 2.0f;
-    public float rotationXlimit = 25.0f;
+    [SerializeField] private Transform PivotCenter;
+    [SerializeField] private float speed = 10;
+    private Vector3 moveDirection;
+    private float rotationX = 0;
+    [SerializeField] private float rotationSpeed = 2.0f;
+    [SerializeField] private float rotationXlimit = 25.0f;
+    private Animator _animator;
+    private CharacterController CharacterController;
 
     void Start()
     {
@@ -24,16 +19,22 @@ public class PlayerControl : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
 
         CharacterController = GetComponent<CharacterController>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        Vector3 forward = -transform.TransformDirection(Vector3.forward);
-        Vector3 right = -transform.TransformDirection(Vector3.right);
+        Vector3 forward = transform.TransformDirection(Vector3.forward);
+        Vector3 right = transform.TransformDirection(Vector3.right);
 
         //recuperation des inputs
         float speedZ = Input.GetAxis("Vertical");
         float speedX = Input.GetAxis("Horizontal");
+        Debug.Log(speedZ);
+        if (speedX != 0f || speedZ != 0)
+            _animator.SetBool("IsRunning", true);
+        else
+            _animator.SetBool("IsRunning", false);
         //float speedY = moveDirection.y;
 
         //calcul des vitesses
