@@ -2,7 +2,7 @@
 - Project name: Dinossembler
 - Unity version: Unity 6000.3.25f1
 - Active game object:
-  - Name: Bone1
+  - Name: SceneController
   - Tag: Untagged
-  - Layer: Bone
+  - Layer: Default
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->
