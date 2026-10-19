@@ -22,7 +22,7 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!carringObject && Input.GetMouseButtonDown(0))
         {
             SelectObject();
         }
@@ -51,11 +51,10 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
     {
         RaycastHit hit;
         // Does the ray intersect target
-        if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerTarget))
-        {
-            selectedLocation = hit.transform;
-            selectedObject.GetComponent<PickableBehavior>().Released(selectedLocation);
-        }
+        Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerTarget);
+        selectedLocation = hit.transform;
+        selectedObject.GetComponent<PickableBehavior>().Released(selectedLocation);
+        carringObject = false;
     }
 
     bool IsPickable(Transform obj)

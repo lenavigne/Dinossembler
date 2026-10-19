@@ -2,7 +2,7 @@
 - Project name: Dinossembler
 - Unity version: Unity 6000.3.25f1
 - Active game object:
-  - Name: dino
+  - Name: Bone1
   - Tag: Untagged
-  - Layer: Default
+  - Layer: Bone
 <!-- UNITY CODE ASSIST INSTRUCTIONS END -->

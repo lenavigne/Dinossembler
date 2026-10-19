@@ -5,8 +5,8 @@ public class PickableBehavior : MonoBehaviour
     Rigidbody _rb;
     bool _isGrabbed = false;
     Transform _target;
-    [SerializeField]
-    float _speed = 2.0f;
+    [SerializeField] private float _speed = 2.0f;
+    [SerializeField] private float _angSpeed = 2.0f;
 
     void Start() 
     {
@@ -15,12 +15,17 @@ public class PickableBehavior : MonoBehaviour
 
     void Update()
     {
-        if (!_isGrabbed && _target != null)
+        if (!_isGrabbed)
         {
-            MoveToTarget();
-            if (IsPlaced())
-                CheckingBone();
+            if (_target != null)
+            {
+                MoveToTarget();
+                if (IsPlaced())
+                    CheckingBone();
+            }
         }
+            
+
     }
     public void Grabbed(Transform player)
     {
@@ -42,6 +47,8 @@ public class PickableBehavior : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position,
             _target.position, _speed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation,
+            _target.rotation, _angSpeed * Time.deltaTime);
     }
 
     bool IsPlaced()
@@ -56,6 +63,8 @@ public class PickableBehavior : MonoBehaviour
         if (transform.name == _target.name)
         {
             transform.SetParent(_target.parent, true);
+            _rb.isKinematic = true;
+            transform.gameObject.layer = 2;
             Destroy(_target.gameObject);
         }
         else
