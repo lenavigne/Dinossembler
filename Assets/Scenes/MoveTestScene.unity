@@ -354,9 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45030f5e2fbce5342b7d080e24af93a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  player: {fileID: 999040347}
-  playerCam: {fileID: 1546848719}
-  pickDistance: 3
+  _speed: 2
 --- !u!54 &609119339
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -835,6 +833,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 866358696115973724, guid: 3525394c4181c204b8c605a3bf953d41, type: 3}
+      propertyPath: nbCapa
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 866358696115973724, guid: 3525394c4181c204b8c605a3bf953d41, type: 3}
+      propertyPath: jumpSpeed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 1853707395813332171, guid: 3525394c4181c204b8c605a3bf953d41, type: 3}
       propertyPath: m_Name
       value: Player

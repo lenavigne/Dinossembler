@@ -11,11 +11,20 @@ public class PlayerControl : MonoBehaviour
 
     public float speed = 10;
 
+    public float jumpSpeed = 10;
+
+    public int nbCapa = 0;
+
     Vector3 moveDirection;
+
+    bool isRunning = false;
 
     float rotationX = 0;
     public float rotationSpeed = 2.0f;
     public float rotationXlimit = 25.0f;
+
+
+    float grav = 25f; //gravité
 
     void Start()
     {
@@ -34,14 +43,49 @@ public class PlayerControl : MonoBehaviour
         //recuperation des inputs
         float speedZ = Input.GetAxis("Vertical");
         float speedX = Input.GetAxis("Horizontal");
-        //float speedY = moveDirection.y;
+        float speedY = moveDirection.y;
+
+
+        isRunning = (Input.GetKey(KeyCode.LeftShift) && nbCapa > 1); //à implémenter -> si cogne dans obstacle fragile.
 
         //calcul des vitesses
-        speedX = speedX * speed;
-        speedZ = speedZ * speed;
+        if (isRunning && CharacterController.isGrounded) {
+            speedX = speedX * speed * 2;
+            speedZ = speedZ * speed * 2;
+            gameObject.tag = "runningPlayer";
+        }
+        else
+        {
+            speedX = speedX * speed;
+            speedZ = speedZ * speed;
+            gameObject.tag = "walkingPlayer";
+        }
 
         //calcul du mouvement
         moveDirection = forward * speedZ + right * speedX;
+
+        if(Input.GetButton("Jump") && CharacterController.isGrounded && nbCapa > 0)
+        {
+            moveDirection.y = jumpSpeed;
+        }
+        else
+        {
+            moveDirection.y = speedY;
+        }
+
+        if(Input.GetButton("Jump") && !CharacterController.isGrounded && nbCapa > 2 && moveDirection.y<1f)
+        {
+            grav = 1f;
+        }
+
+        if (!CharacterController.isGrounded)
+        {
+            moveDirection.y -= grav * Time.deltaTime;
+        }
+        if (CharacterController.isGrounded)
+        {
+            grav = 20f;
+        }
 
         //application du mouvement
         CharacterController.Move(moveDirection * Time.deltaTime);
