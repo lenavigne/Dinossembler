@@ -15,6 +15,7 @@ public class PlayerControl : MonoBehaviour
     public float jumpSpeed = 10;
     public int nbCapa = 0;
     bool isRunning = false;
+
     float grav = 25f; //gravité
     void Start()
     {
@@ -71,14 +72,15 @@ public class PlayerControl : MonoBehaviour
 
         if(Input.GetButton("Jump") && !CharacterController.isGrounded && nbCapa > 2 && moveDirection.y<1f)
         {
-            grav = 1f;
+            grav = 2f;
         }
 
         if (!CharacterController.isGrounded)
         {
             moveDirection.y -= grav * Time.deltaTime;
         }
-        if (CharacterController.isGrounded)
+
+        if (CharacterController.isGrounded) //|| (Input.GetButton("Jump") && isFlying)
         {
             grav = 20f;
         }
@@ -93,5 +95,13 @@ public class PlayerControl : MonoBehaviour
         PivotCenter.transform.localRotation = Quaternion.Euler(rotationX, PivotCenter.transform.localEulerAngles.y, PivotCenter.transform.localEulerAngles.z);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
 
+    }
+
+    private void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.CompareTag("Breakable") && isRunning)
+        {
+            Destroy(collision.gameObject);
+        }
     }
 }
