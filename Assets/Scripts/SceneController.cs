@@ -1,27 +1,38 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneController : MonoBehaviour
 {
+    public enum Scenes 
+    {
+        Start,
+        Main,
+        Loose,
+        Win
+    }
     private int nb_skeletons = 1;
     private int nb_skel_complete = 0;
-    private double start_timer;
-    [SerializeField] private double chrono = 100f;
-    [SerializeField] private string nameScene = "TestGamingScene";
+    private double time_elasped = 0;
+    [SerializeField] private double alloted_time = 100f;
+    [SerializeField] private string nameMainScene = "MainScene";
+    [SerializeField] private TextMeshProUGUI textTimer;
 
     void Start()
     {
-        if(SceneManager.GetActiveScene().name == nameScene)
+        if(SceneManager.GetActiveScene().name == nameMainScene)
         {
-            start_timer = Time.timeAsDouble;
+            DisplayTimer();
         }
     }
 
     void Update()
     {
-        if (SceneManager.GetActiveScene().name == nameScene)
+        if (SceneManager.GetActiveScene().name == nameMainScene)
         {
-            if (Time.timeAsDouble - start_timer >= chrono)
+            time_elasped += Time.deltaTime;
+            DisplayTimer();
+            if (time_elasped >= alloted_time)
             {
                 ChangeSceneByName("EndLooseScene");
                 
@@ -37,6 +48,14 @@ public class SceneController : MonoBehaviour
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
         }
+    }
+    void DisplayTimer()
+    {
+        double timeRemain = alloted_time - time_elasped;
+        float min = (int)(timeRemain / 60);
+        float sec = (int)(timeRemain % 60);
+        double milsec = (timeRemain % 1) * 100;
+        textTimer.text = string.Format("{0:00}:{1:00}.{2:00}", min, sec, milsec);
     }
     public void CompleteSkeleton()
     {
