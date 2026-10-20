@@ -6,6 +6,7 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
     Camera cam;
     LayerMask layerObject;
     LayerMask layerTarget;
+    LayerMask layerObstacle;
 
     Transform selectedObject;
     Transform selectedLocation;
@@ -18,17 +19,25 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
         cam = GetComponentInChildren<Camera>();
         layerObject = LayerMask.GetMask("Bone");
         layerTarget = LayerMask.GetMask("Target");
+        layerObstacle = LayerMask.GetMask("Wall");
     }
 
     void Update()
     {
         if (!carringObject && Input.GetMouseButtonDown(0))
         {
-            SelectObject();
+            if (!Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Mathf.Infinity, layerObstacle))
+                SelectObject();
         }
         else if (carringObject && Input.GetMouseButtonUp(0))
         {
-            SelectLocationTarget();
+            if (!Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Mathf.Infinity, layerObstacle))
+                SelectLocationTarget();
+            else
+            {
+                selectedObject.GetComponent<PickableBehavior>().Released();
+                carringObject = false;
+            }
         }
     }
 
