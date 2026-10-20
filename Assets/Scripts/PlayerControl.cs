@@ -1,5 +1,7 @@
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.EventSystems;
+using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
@@ -97,10 +99,15 @@ public class PlayerControl : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter(Collider collision)
+    private IEnumerator OnTriggerEnter(Collider collision)
     {
         if (collision.gameObject.CompareTag("Breakable") && isRunning)
         {
+            AudioSource audioSource = collision.gameObject.GetComponent<AudioSource>();
+            audioSource.Play();
+            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
+            collision.gameObject.GetComponent<BoxCollider>().enabled = false;
+            yield return new WaitWhile(() => audioSource.isPlaying);
             Destroy(collision.gameObject);
         }
     }
