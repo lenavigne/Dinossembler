@@ -10,12 +10,14 @@ public class SceneController : MonoBehaviour
     [SerializeField] private double alloted_time = 100f;
     [SerializeField] private string nameMainScene = "MainScene";
     [SerializeField] private TextMeshProUGUI textTimer;
+    [SerializeField] private TextMeshProUGUI textSkeletonsCounter;
 
     void Start()
     {
         if(SceneManager.GetActiveScene().name == nameMainScene)
         {
             DisplayTimer();
+            DisplaySkeletonCounter();
         }
     }
 
@@ -53,6 +55,11 @@ public class SceneController : MonoBehaviour
     public void CompleteSkeleton()
     {
         nb_skel_complete++;
+        DisplaySkeletonCounter();
+    }
+    void DisplaySkeletonCounter()
+    {
+        textSkeletonsCounter.text = "Skeletons : " + nb_skel_complete + "/" + nb_skeletons;
     }
     public void ChangeSceneByName(string name)
     {

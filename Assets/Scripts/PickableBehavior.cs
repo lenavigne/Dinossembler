@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class PickableBehavior : MonoBehaviour
 {
-    Rigidbody _rb;
-    bool _isGrabbed = false;
-    Transform _target;
+    private Rigidbody _rb;
+    private bool _isGrabbed = false;
+    private Transform _target;
     [SerializeField] private float _speed = 2.0f;
     [SerializeField] private float _angSpeed = 2.0f;
 
@@ -19,13 +19,12 @@ public class PickableBehavior : MonoBehaviour
         {
             if (_target != null)
             {
+                //Debug.Log("moving");
                 MoveToTarget();
                 if (IsPlaced())
                     CheckingBone();
             }
         }
-            
-
     }
     public void Grabbed(Transform player)
     {
@@ -37,10 +36,10 @@ public class PickableBehavior : MonoBehaviour
     public void Released(Transform t = null)
     {
         _isGrabbed = false;
-        _rb.isKinematic = false;
+        _rb.isKinematic = (t != null);
+        _rb.useGravity = (t == null);
         transform.parent = null;
         _target = t;
-        _rb.useGravity = (t == null);
     }
 
     void MoveToTarget()
@@ -58,19 +57,20 @@ public class PickableBehavior : MonoBehaviour
 
     void CheckingBone()
     {
-        Debug.Log("_target Name : " + _target.name);
-        Debug.Log("Bone Name : " + transform.name);
+        //Debug.Log("_target Name : " + _target.name);
+        //Debug.Log("Bone Name : " + transform.name);
         if (transform.name == _target.name)
         {
             transform.SetParent(_target.parent, true);
             _rb.isKinematic = true;
-            transform.gameObject.layer = 2;
+            transform.gameObject.layer = 9;
             Destroy(_target.gameObject);
             transform.GetComponentInParent<CompleteSkeleton>().BonePlaced();
         }
         else
         {
             _rb.useGravity = true;
+            _rb.isKinematic = false;
         }
         _target = null;
     }

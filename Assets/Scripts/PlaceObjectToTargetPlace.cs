@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class PlaceObjectToTargetPlace : MonoBehaviour
 {
-    Camera cam;
-    LayerMask layerObject;
-    LayerMask layerTarget;
-    LayerMask layerObstacle;
-
-    Transform selectedObject;
-    Transform selectedLocation;
-    [SerializeField]
-    float pickDistance = 4f;
-    bool carringObject = false;
+    private Camera cam;
+    private LayerMask layerObject;
+    private LayerMask layerTarget;
+    private LayerMask layerObstacle;
+    
+    private Transform selectedObject;
+    private Transform selectedLocation;
+    [SerializeField] private float pickDistance = 4f;
+    [SerializeField] private float selectDistance = 10f;
+    private bool carringObject = false;
 
     void Start()
     {
@@ -24,20 +24,39 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
 
     void Update()
     {
+        //RaycastHit h;
+        //RaycastHit hw;
+        //if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out h, Mathf.Infinity, layerTarget))
+        //{
+        //    if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hw, Mathf.Infinity, layerObstacle))
+        //    {
+        //        if(hw.distance < h.distance)//target derrière mur
+        //        {
+        //            Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hw.distance, Color.blue);
+        //        }
+        //        else
+        //        {
+        //            Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * h.distance, Color.red);
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * hw.distance, Color.blue);
+        //    }
+            
+        //    //Debug.Log(h.transform.name);
+        //}
+        //else
+        //    Debug.DrawRay(cam.transform.position, cam.transform.TransformDirection(Vector3.forward) * 100, Color.white);
+
         if (!carringObject && Input.GetMouseButtonDown(0))
         {
-            if (!Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Mathf.Infinity, layerObstacle))
-                SelectObject();
+            SelectObject();
         }
         else if (carringObject && Input.GetMouseButtonUp(0))
         {
-            if (!Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), Mathf.Infinity, layerObstacle))
-                SelectLocationTarget();
-            else
-            {
-                selectedObject.GetComponent<PickableBehavior>().Released();
-                carringObject = false;
-            }
+            carringObject = false;
+            SelectLocationTarget();
         }
     }
 
@@ -60,10 +79,26 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
     {
         RaycastHit hit;
         // Does the ray intersect target
-        Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerTarget);
-        selectedLocation = hit.transform;
+        if(Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerTarget))
+        {
+            Debug.Log(hit.distance);
+            if(hit.distance < selectDistance)
+            {
+                RaycastHit hitObstacle;
+                if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hitObstacle, Mathf.Infinity, layerObstacle))
+                {
+                    selectedLocation = (hitObstacle.distance < hit.distance) ? null : hit.transform;
+                        //si mur devant target
+                }
+                //Debug.Log("target selected : " + selectedLocation.name);
+            }
+            else
+                selectedLocation = null;
+        }
+        else
+            selectedLocation = null;
+
         selectedObject.GetComponent<PickableBehavior>().Released(selectedLocation);
-        carringObject = false;
     }
 
     bool IsPickable(Transform obj)

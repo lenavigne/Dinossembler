@@ -37,7 +37,7 @@ public class PlayerControl : MonoBehaviour
         //recuperation des inputs
         float speedZ = Input.GetAxis("Vertical");
         float speedX = Input.GetAxis("Horizontal");
-        Debug.Log(speedZ);
+        //Debug.Log(speedZ);
         if (speedX != 0f || speedZ != 0)
             _animator.SetBool("IsRunning", true);
         else
