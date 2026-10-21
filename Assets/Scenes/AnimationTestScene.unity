@@ -518,6 +518,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spine
       objectReference: {fileID: 0}
+    - target: {fileID: 1352563773183320322, guid: 93bf9861d5eb0e044bf911eb86f8736f, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1841573371802237880, guid: 93bf9861d5eb0e044bf911eb86f8736f, type: 3}
       propertyPath: m_LocalPosition.x
       value: -12.15
@@ -574,6 +578,10 @@ PrefabInstance:
     - target: {fileID: 5769191517594699313, guid: 7dea191324aad7d4a9e84a6d782d0149, type: 3}
       propertyPath: m_Name
       value: Left_Back_Leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 5769191517594699313, guid: 7dea191324aad7d4a9e84a6d782d0149, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6583024274374499467, guid: 7dea191324aad7d4a9e84a6d782d0149, type: 3}
       propertyPath: m_LocalPosition.x
@@ -671,6 +679,10 @@ PrefabInstance:
     - target: {fileID: 6427312626672239347, guid: 26fc7c3ec51290547b3a80dd4856ad3a, type: 3}
       propertyPath: m_Name
       value: Right_Front_Leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 6427312626672239347, guid: 26fc7c3ec51290547b3a80dd4856ad3a, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -851,7 +863,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: Tail
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8772679154048263647, guid: 0b98fb6b883de3d4b8692cb29531a830, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 4760689679599243793, guid: 0b98fb6b883de3d4b8692cb29531a830, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -864,6 +881,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 678601139283513827, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 1127081109499217102, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
       propertyPath: m_LocalPosition.x
       value: -9.85888
@@ -904,11 +925,80 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1470081958230469317, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1873118785272230523, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109774797784775232, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2659423211641146145, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
       propertyPath: m_Name
       value: DinosaurSkeletonToComplete
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 2893515750454799808, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3857197534181806346, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4317259056604358059, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 4333864944610318362, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5281657457928557574, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 5778594657890032568, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5881458933948048784, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 6148187360596192429, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7153849092320019723, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7397137872652079050, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600672126125180891, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8601924053573184919, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8911281685781888801, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8962975963422593811, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 10977428177256062, guid: bece1781626666a438d6dd3e38568e2e, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
@@ -924,6 +1014,10 @@ PrefabInstance:
     - target: {fileID: 4871696884212810899, guid: 834b8c010fcdcf046a7e341d28b8a053, type: 3}
       propertyPath: m_Name
       value: Skull
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871696884212810899, guid: 834b8c010fcdcf046a7e341d28b8a053, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 5246814708229578281, guid: 834b8c010fcdcf046a7e341d28b8a053, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1022,6 +1116,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Neck
       objectReference: {fileID: 0}
+    - target: {fileID: 5595864328722562478, guid: e0324eb9c8173104cad18f42984d8d59, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1078,6 +1176,10 @@ PrefabInstance:
     - target: {fileID: 2068467408228894541, guid: c5449c8a0c6144e46866acf8af7ae51f, type: 3}
       propertyPath: m_Name
       value: Chest
+      objectReference: {fileID: 0}
+    - target: {fileID: 2068467408228894541, guid: c5449c8a0c6144e46866acf8af7ae51f, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1136,6 +1238,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Right_Back_Leg
       objectReference: {fileID: 0}
+    - target: {fileID: 7870809139023893914, guid: 4a788d951fa1ad84983ef9ad65f5a0f2, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1192,6 +1298,10 @@ PrefabInstance:
     - target: {fileID: 657594338690595039, guid: 82c7130dba975fd4999b141829f8d5da, type: 3}
       propertyPath: m_Name
       value: Left_Front_Leg
+      objectReference: {fileID: 0}
+    - target: {fileID: 657594338690595039, guid: 82c7130dba975fd4999b141829f8d5da, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
