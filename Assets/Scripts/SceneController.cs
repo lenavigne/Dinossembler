@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 public class SceneController : MonoBehaviour
 {
     [SerializeField] private int nb_skeletons = 1;
-    private int nb_skel_complete = 0;
+    public int nb_skel_complete = 0;
     private double time_elasped = 0;
     [SerializeField] private double alloted_time = 100f;
     [SerializeField] private string nameMainScene = "MainScene";

@@ -6,6 +6,7 @@ using System.Collections;
 public class PlayerControl : MonoBehaviour
 {
     [SerializeField] private Transform PivotCenter;
+    [SerializeField] private SceneController sceneController;
     [SerializeField] private float speed = 10;
     private Vector3 moveDirection;
     private float rotationX = 0;
@@ -15,7 +16,6 @@ public class PlayerControl : MonoBehaviour
     private CharacterController CharacterController;
 
     public float jumpSpeed = 10;
-    public int nbCapa = 0;
     bool isRunning = false;
 
     float grav = 25f; //gravité
@@ -45,7 +45,7 @@ public class PlayerControl : MonoBehaviour
         float speedY = moveDirection.y;
 
 
-        isRunning = (Input.GetKey(KeyCode.LeftShift) && nbCapa > 1); //à implémenter -> si cogne dans obstacle fragile.
+        isRunning = (Input.GetKey(KeyCode.LeftShift) && sceneController.nb_skel_complete > 1); 
 
         //calcul des vitesses
         if (isRunning && CharacterController.isGrounded) {
@@ -63,7 +63,7 @@ public class PlayerControl : MonoBehaviour
         //calcul du mouvement
         moveDirection = forward * speedZ + right * speedX;
 
-        if(Input.GetButton("Jump") && CharacterController.isGrounded && nbCapa > 0)
+        if(Input.GetButton("Jump") && CharacterController.isGrounded && sceneController.nb_skel_complete > 0)
         {
             moveDirection.y = jumpSpeed;
         }
@@ -72,7 +72,7 @@ public class PlayerControl : MonoBehaviour
             moveDirection.y = speedY;
         }
 
-        if(Input.GetButton("Jump") && !CharacterController.isGrounded && nbCapa > 2 && moveDirection.y<1f)
+        if(Input.GetButton("Jump") && !CharacterController.isGrounded && sceneController.nb_skel_complete > 2 && moveDirection.y<1f)
         {
             grav = 2f;
         }
