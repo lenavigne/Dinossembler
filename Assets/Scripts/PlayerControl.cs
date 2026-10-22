@@ -11,7 +11,6 @@ public class PlayerControl : MonoBehaviour
     private Vector3 moveDirection;
     private float rotationX = 0;
     [SerializeField] private float rotationSpeed = 2.0f;
-    [SerializeField] private float rotationXlimit = 25.0f;
     private Animator _animator;
     private CharacterController CharacterController;
 
@@ -92,7 +91,7 @@ public class PlayerControl : MonoBehaviour
 
         //camera
         rotationX += -Input.GetAxis("Mouse Y") * rotationSpeed;
-        rotationX = Mathf.Clamp(rotationX, -rotationXlimit, rotationXlimit);
+        rotationX = Mathf.Clamp(rotationX, -80, 60);
         //applique rotation haut/bas
         PivotCenter.transform.localRotation = Quaternion.Euler(rotationX, PivotCenter.transform.localEulerAngles.y, PivotCenter.transform.localEulerAngles.z);
         transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * rotationSpeed, 0);
