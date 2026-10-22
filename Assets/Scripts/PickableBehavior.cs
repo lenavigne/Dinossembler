@@ -3,6 +3,7 @@ using UnityEngine;
 public class PickableBehavior : MonoBehaviour
 {
     private Rigidbody _rb;
+    private Collider _col;
     private bool _isGrabbed = false;
     private Transform _target;
     [SerializeField] private float _speed = 2.0f;
@@ -11,6 +12,7 @@ public class PickableBehavior : MonoBehaviour
     void Start() 
     {
         _rb = GetComponent<Rigidbody>(); 
+        _col = GetComponent<Collider>();
     }
 
     void Update()
@@ -29,6 +31,7 @@ public class PickableBehavior : MonoBehaviour
     public void Grabbed(Transform player)
     {
         _rb.isKinematic = true;
+        _col.isTrigger = true;
         transform.SetParent(player, true);
         _isGrabbed = true;
     }
@@ -36,6 +39,7 @@ public class PickableBehavior : MonoBehaviour
     public void Released(Transform t = null)
     {
         _isGrabbed = false;
+        _col.isTrigger = false;
         _rb.isKinematic = (t != null);
         _rb.useGravity = (t == null);
         transform.parent = null;
@@ -52,7 +56,7 @@ public class PickableBehavior : MonoBehaviour
 
     bool IsPlaced()
     {
-        return Vector3.Distance(transform.position, _target.position) == 0;
+        return Vector3.Distance(transform.position, _target.position) == 0 && Vector3.Angle(transform.eulerAngles, _target.eulerAngles) <= 1f;
     }
 
     void CheckingBone()

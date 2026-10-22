@@ -10,8 +10,8 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
     
     private Transform selectedObject;
     private Transform selectedLocation;
-    [SerializeField] private float pickDistance = 4f;
-    [SerializeField] private float selectDistance = 10f;
+    [SerializeField] private float pickDistance = 5f;
+    [SerializeField] private float selectDistance = 20f;
     private bool carringObject = false;
 
     void Start()
@@ -66,7 +66,7 @@ public class PlaceObjectToTargetPlace : MonoBehaviour
         // Does the ray intersect object
         if (Physics.Raycast(cam.transform.position, cam.transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerObject))
         {
-            if(IsPickable(hit.transform))
+            if(hit.distance <= pickDistance)
             { 
                 selectedObject = hit.transform;
                 selectedObject.GetComponent<PickableBehavior>().Grabbed(cam.transform);

@@ -66,7 +66,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 1428ceb4249542b45a2b9c21bad8cb25, type: 3}
       propertyPath: m_Name
-      value: dino 1
+      value: dinoPNJ
       objectReference: {fileID: 0}
     - target: {fileID: 3856487415435200030, guid: 1428ceb4249542b45a2b9c21bad8cb25, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -80,9 +80,6 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1428ceb4249542b45a2b9c21bad8cb25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3267263594855206937}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1428ceb4249542b45a2b9c21bad8cb25, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 4018411235015352720}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 1428ceb4249542b45a2b9c21bad8cb25, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4645398845844384876}
@@ -117,27 +114,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!65 &4018411235015352720
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1390934313183550966}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 2.44, y: 4.5, z: 3.68}
-  m_Center: {x: 0, y: 2.25, z: 0}
 --- !u!195 &4645398845844384876
 NavMeshAgent:
   m_ObjectHideFlags: 0
