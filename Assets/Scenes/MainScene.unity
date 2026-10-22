@@ -8388,6 +8388,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 162919062}
     - target: {fileID: 3755400960996046014, guid: c30847c4dc0e5084baa62f4002fc4c4c, type: 3}
+      propertyPath: alloted_time
+      value: 1200
+      objectReference: {fileID: 0}
+    - target: {fileID: 3755400960996046014, guid: c30847c4dc0e5084baa62f4002fc4c4c, type: 3}
       propertyPath: textSkeletonsCounter
       value: 
       objectReference: {fileID: 162919061}
@@ -10964,6 +10968,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 36090226763884015, guid: 8b90fc0a19892cb4481af6f11d5d6d26, type: 3}
+      propertyPath: selectDistance
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1233800073542677763, guid: 8b90fc0a19892cb4481af6f11d5d6d26, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -11038,7 +11046,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7219112193217975343, guid: 8b90fc0a19892cb4481af6f11d5d6d26, type: 3}
       propertyPath: rotationXlimit
-      value: 60
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 7219112193217975343, guid: 8b90fc0a19892cb4481af6f11d5d6d26, type: 3}
       propertyPath: sceneController
