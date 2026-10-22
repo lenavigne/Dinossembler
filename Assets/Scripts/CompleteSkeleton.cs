@@ -5,6 +5,7 @@ public class CompleteSkeleton : MonoBehaviour
 {
     [SerializeField] private SceneController sc_ctrl;
     [SerializeField] private GameObject[] skel_lights;
+    private bool isCompleted = false;
     private int nb_bones;
     private int nb_bones_placed = 0;
     void Start()
@@ -18,9 +19,10 @@ public class CompleteSkeleton : MonoBehaviour
 
     void Update()
     {
-        if (nb_bones_placed == nb_bones)
+        if (nb_bones_placed == nb_bones && !isCompleted)
         {
             sc_ctrl.CompleteSkeleton();
+            isCompleted = true;
             foreach (var light in skel_lights)
             {
                 light.SetActive(true);

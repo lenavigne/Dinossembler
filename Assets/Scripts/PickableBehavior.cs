@@ -73,6 +73,7 @@ public class PickableBehavior : MonoBehaviour
         }
         else
         {
+            GetComponent<AudioSource>().Play();
             _rb.useGravity = true;
             _rb.isKinematic = false;
         }

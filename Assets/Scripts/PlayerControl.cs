@@ -13,10 +13,11 @@ public class PlayerControl : MonoBehaviour
     [SerializeField] private float rotationSpeed = 2.0f;
     private Animator _animator;
     private CharacterController CharacterController;
+    private AudioSource _audioSource;
+    public float loopSongSpeed = 0.6f;
 
     public float jumpSpeed = 10;
     bool isRunning = false;
-
     float grav = 25f; //gravité
     void Start()
     {
@@ -26,6 +27,7 @@ public class PlayerControl : MonoBehaviour
 
         CharacterController = GetComponent<CharacterController>();
         _animator = GetComponent<Animator>();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -38,9 +40,15 @@ public class PlayerControl : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal");
         //Debug.Log(speedZ);
         if (speedX != 0f || speedZ != 0)
+        {
             _animator.SetBool("IsRunning", true);
+            _audioSource.mute = false;
+        }
         else
+        {
             _animator.SetBool("IsRunning", false);
+            _audioSource.mute = true;
+        }
         float speedY = moveDirection.y;
 
 
@@ -50,12 +58,14 @@ public class PlayerControl : MonoBehaviour
         if (isRunning && CharacterController.isGrounded) {
             speedX = speedX * speed * 2;
             speedZ = speedZ * speed * 2;
+            _audioSource.pitch = loopSongSpeed * 2;
             gameObject.tag = "runningPlayer";
         }
         else
         {
             speedX = speedX * speed;
             speedZ = speedZ * speed;
+            _audioSource.pitch = loopSongSpeed;
             gameObject.tag = "walkingPlayer";
         }
 

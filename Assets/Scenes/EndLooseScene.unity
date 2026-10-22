@@ -163,7 +163,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0670654b605fbd4cadb05394ebd5b27, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneController
-  nb_skeletons: 1
+  nb_skeletons: 4
   nb_skel_complete: 0
   alloted_time: 100
   nameMainScene: MainScene
