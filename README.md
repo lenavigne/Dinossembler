@@ -13,6 +13,7 @@ Pour gagner, il faut assembler les quatres squelettes en s'aidant des capacités
 Pour perdre, il faut ne pas réussir à assembler les squelettes dans le temps imparti.
 
 2) Répartition du travail
+
 Axel :
 - Mouvement du personnage
 - Caméra à la 3eme personne
@@ -22,6 +23,7 @@ Axel :
 - Textures
 - Musiques & sons
 - Documentation
+
 Lena :
 - Composition des squelettes
 - Release
