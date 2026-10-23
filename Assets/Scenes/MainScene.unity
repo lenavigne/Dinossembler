@@ -14405,6 +14405,10 @@ PrefabInstance:
       value: 256
       objectReference: {fileID: 0}
     - target: {fileID: 7990864781316101843, guid: da5fa050e2f69b244896908d8d612749, type: 3}
+      propertyPath: m_Volume
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 7990864781316101843, guid: da5fa050e2f69b244896908d8d612749, type: 3}
       propertyPath: m_Resource
       value: 
       objectReference: {fileID: 6418180475301049370, guid: 9a2dd2061685a1347be726068997cb20, type: 2}
