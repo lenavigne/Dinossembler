@@ -40,9 +40,13 @@ public class PlayerControl : MonoBehaviour
         float speedX = Input.GetAxis("Horizontal");
         //Debug.Log(speedZ);
         if (speedX != 0f || speedZ != 0)
+        //if (Input.GetAxis("Vertical") || Input.GetAxis("Horizontal"))
         {
             _animator.SetBool("IsRunning", true);
-            _audioSource.mute = false;
+            if (CharacterController.isGrounded)
+                _audioSource.mute = false;
+            else
+                _audioSource.mute = true;
         }
         else
         {
@@ -65,7 +69,8 @@ public class PlayerControl : MonoBehaviour
         {
             speedX = speedX * speed;
             speedZ = speedZ * speed;
-            _audioSource.pitch = loopSongSpeed;
+            if(CharacterController.isGrounded)
+                _audioSource.pitch = loopSongSpeed;
             gameObject.tag = "walkingPlayer";
         }
 
